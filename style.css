@@ -19,7 +19,9 @@ body {
     display: none;
 }
 
-.start-container {
+/*============================================*/
+
+#start-container {
     border: 2px solid black;
     padding: 20px;
 }
@@ -28,6 +30,43 @@ body {
     margin-bottom: 2vh;
     margin-left: 3%;
 }
+
+#name-container {
+    border: 2px solid black;
+    padding: 20px;
+    margin-bottom: auto;
+    margin-right: auto;
+}
+
+#classes-container {
+    border: 2px solid black;
+    flex-direction: column;
+    width:30vw;
+    height:100%;   
+}
+
+#display-classes {
+    border: 2px solid salmon;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+#warrior {
+    border: 2px solid red;
+    
+}
+
+#rogue {
+    border: 2px solid blue;
+}
+
+#mage {
+    border: 2px solid green;
+}
+
+
 
 
 
