@@ -40,7 +40,6 @@ body {
 
 #classes-container {
     border: 2px solid black;
-    flex-direction: column;
     width:30vw;
     height:100%;   
 }
