@@ -1,7 +1,5 @@
 * {
     box-sizing: border-box;
-    /* margin: 0;
-    padding: 0; */
 }
 
 body {
@@ -10,51 +8,85 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 }
 
-/* reusuables*/
+/*======================REUSUABLES======================*/
 .hide {
     display: none;
 }
 
-/*============================================*/
+/*============*/
 
+/*======================START SCREEN======================*/
 #start-container {
     border: 2px solid black;
-    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 
-#ready {
-    margin-bottom: 2vh;
-    margin-left: 3%;
+#start-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*======================CHARACTER CREATION======================*/
+
+#grid-character-creation {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 0.5fr 1.5fr 0.75fr;
+    grid-template-rows: 0.5fr 1.5fr 0.3fr 0.2fr;
+    grid-template-areas: 
+    "name-container character-creation-picture-container ."
+    "skills-tree-container character-creation-picture-container classes-container"
+    ". character-creation-picture-container classes-container"
+    ". ready-button-container .";
+    grid-gap: 0.3rem
 }
 
 #name-container {
     border: 2px solid black;
-    padding: 20px;
-    margin-bottom: auto;
-    margin-right: auto;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-area: name-container;
+
 }
 
-#classes-container {
+#name-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+#character-creation-picture-container {
+    border: 2px solid aqua;
+    grid-area: character-creation-picture-container;
+}
+
+#skills-tree-container {
+    border: 2px solid pink;
+    grid-area: skills-tree-container;
+}
+
+#classes-container{
     border: 2px solid black;
-    width:30vw;
-    height:100%;   
+    grid-area: classes-container;
 }
 
 #display-classes {
-    border: 2px solid salmon;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 100%;
 }
 
 #warrior {
     border: 2px solid red;
-    
+
 }
 
 #rogue {
@@ -65,8 +97,8 @@ body {
     border: 2px solid green;
 }
 
-
-
-
-
-
+#ready-button-container {
+    border: 2px solid black;
+    grid-area: ready-button-container
+    
+}

@@ -12,46 +12,75 @@
 
 <body>
     <div id="start-container">
-        <h2 id="ready">Are you ready?</h2>
-        <div id="start-buttton">
-            <button id="start">Start Adventure</button>
-        </div>
-    </div>
-    <div id="name-container" class="hide">
-        <div id="enter-name">
-            <label for="character-name"> Enter your name: </label>
-            <input type="text" id="character-name">
-        </div>
-        <div>
-            <button id="submit-name"> Submit </button>
-        </div>
-    </div>
-    <div id="classes-container" class="hide">
-        <div id="display-classes">
-            <div id="warrior">
-                <h2 class="class-name">Warrior</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
-                    aspernatur
-                    vel, repellat sint deleniti. Consequatur maxime iusto laudantium quibusdam ea repellat. Autem,
-                    doloribus? Assumenda, doloribus!</p>
-            </div>
-            <div id="rogue">
-                <h2 class="class-name">Rogue</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos iste possimus recusandae,
-                    minima
-                    voluptate perspiciatis quasi atque odio iure itaque eos vel. Tempora perspiciatis tempore doloremque
-                    molestiae omnis iste ea.</p>
-            </div>
-            <div id="mage">
-                <h2 class="class-name">Mage</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perferendis eveniet ea ullam ipsam,
-                    eaque
-                    assumenda alias laudantium nesciunt ratione molestias nulla mollitia, nemo veritatis doloremque
-                    asperiores.Repudiandae, molestias possimus.</p>
+        <div id="start-flex">
+            <h2>Are you ready?</h2>
+            <div id="start-buttton">
+                <button id="start">Start Adventure</button>
             </div>
         </div>
     </div>
-
+    <div id="grid-character-creation">
+        <div id="name-container" class="hide">
+            <div id="name-flex">
+                <div id="enter-name">
+                    <label for="character-name"> Enter your name: </label>
+                    <input type="text" id="character-name" maxlength="10">
+                </div>
+                <div>
+                    <button id="submit-name"> Submit </button>
+                </div>
+                <div class="warning hide">Enter your character's name</div>
+            </div>
+        </div>
+        <div id="character-creation-picture-container" class="hide">
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis sed tenetur modi nesciunt numquam voluptas quis velit consequatur, ipsam quae! Sapiente, corporis et soluta ipsa fugiat harum recusandae obcaecati id!</p>
+        </div>
+        <div id="skills-tree-container" class="hide">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quia a nulla ipsam nesciunt culpa debitis maxime nobis? Optio, nisi! Sunt rerum odio quisquam optio libero fugit quo fugiat consequuntur.</p>
+        </div>
+        <div id="classes-container" class="hide">
+            <div id="display-classes">
+                <div id="warrior">
+                    <h2 class="class-name">Warrior</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
+                        aspernatur
+                        vel, repellat sint deleniti. Consequatur maxime iusto laudantium quibusdam ea repellat. Autem,
+                        doloribus? Assumenda, doloribus!</p>
+                </div>
+                <div id="rogue">
+                    <h2 class="class-name">Rogue</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos iste possimus recusandae,
+                        minima
+                        voluptate perspiciatis quasi atque odio iure itaque eos vel. Tempora perspiciatis tempore
+                        doloremque
+                        molestiae omnis iste ea.</p>
+                </div>
+                <div id="mage">
+                    <h2 class="class-name">Mage</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perferendis eveniet ea ullam
+                        ipsam,
+                        eaque
+                        assumenda alias laudantium nesciunt ratione molestias nulla mollitia, nemo veritatis doloremque
+                        asperiores.Repudiandae, molestias possimus.</p>
+                </div>
+            </div>
+        </div>
+        <div id="ready-button-container" class="hide">
+            <button id="ready">Start Your Adventure</button>
+        </div>
+    </div>
+    <div id="narrator-container" class="hide">
+        <p id="narrator">Once Upon A Time</p>
+    </div>
+    <div id="character-dialogue-container" class="hide">
+        <p class="dialogue">Text</p>
+    </div>
+    <div id="options-container" class="hide">
+        <button class="btn">Option 1</button>
+        <button class="btn">Option 2</button>
+        <button class="btn">Option 3</button>
+        <button class="btn">Option 4</button>
+    </div>
 </body>
 
 </html>
