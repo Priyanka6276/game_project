@@ -17,7 +17,9 @@ body {
     display: none;
 }
 
-/*============*/
+.no-bullets {
+    list-style-type: none;
+}
 
 /*======================START SCREEN======================*/
 #start-container {
@@ -73,32 +75,121 @@ body {
     grid-area: skills-tree-container;
 }
 
+#skill-tree {
+    display: grid;
+    grid-template-columns: 1fr 0.25fr;
+    grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+    grid-template-areas: 
+    "skills ."
+    "ins ."
+    "int ."
+    "per ."
+    "dexch ."
+    "att ."
+    "dex ."
+    "hea .";
+}
+
+#skill-heading {
+    grid-area: skills;
+}
+#ins {
+    grid-area: ins;
+}
+#int {
+    grid-area: int;
+}
+#per {
+    grid-area: per;
+}
+#dexch {
+    grid-area: dexch;
+}
+#att {
+    grid-area: att;
+}
+#dex {
+    grid-area: dex;
+}
+#hea {
+    grid-area: hea;
+}
+
 #classes-container{
     border: 2px solid black;
     grid-area: classes-container;
+    height: fit-content;
 }
 
 #display-classes {
+    border: 2px solid sienna;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 #warrior {
     border: 2px solid red;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #rogue {
     border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #mage {
     border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.class-name {
+    border: 2px solid black;
+    width: fit-content;
 }
 
 #ready-button-container {
     border: 2px solid black;
     grid-area: ready-button-container
     
+}
+
+/*======================STORY BEGINS======================*/
+
+
+
+#flex-narrator-container {
+    display: flex;
+    justify-content: center;
+}
+
+#narrator-container {
+    border: 2px solid black;
+    width: 60vw;
+    height: 15vh;
+    position: relative;  
+}
+
+#narrator {
+    border: 2px solid blue;
+    position: absolute;
+    width: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+#continue {
+    border: 2px solid pink;
+    position: absolute;
+    top: 80%;
+    left: 90%;
 }

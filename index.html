@@ -33,14 +33,27 @@
             </div>
         </div>
         <div id="character-creation-picture-container" class="hide">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis sed tenetur modi nesciunt numquam voluptas quis velit consequatur, ipsam quae! Sapiente, corporis et soluta ipsa fugiat harum recusandae obcaecati id!</p>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis sed tenetur modi nesciunt numquam
+                voluptas quis velit consequatur, ipsam quae! Sapiente, corporis et soluta ipsa fugiat harum recusandae
+                obcaecati id!</p>
         </div>
         <div id="skills-tree-container" class="hide">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum quia a nulla ipsam nesciunt culpa debitis maxime nobis? Optio, nisi! Sunt rerum odio quisquam optio libero fugit quo fugiat consequuntur.</p>
+            <div id="skill-tree">
+                <h2 id="skill-heading">Skills</h2>
+        
+                    <p id="ins">Insight</p>
+                    <p id="int">Intimidation</p>
+                    <p id="per">Persuasion</p>
+                    <p id="dexch">Dexterity Check</p>
+                    <p id="att">Attack</p>
+                    <p id="dex">Dexterity</p>
+                    <p id="hea">Health</p>
+                
+            </div>
         </div>
         <div id="classes-container" class="hide">
             <div id="display-classes">
-                <div id="warrior">
+                <div id="warrior" onclick=" characterCreation.chooseClass()">
                     <h2 class="class-name">Warrior</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
                         aspernatur
@@ -69,8 +82,15 @@
             <button id="ready">Start Your Adventure</button>
         </div>
     </div>
-    <div id="narrator-container" class="hide">
-        <p id="narrator">Once Upon A Time</p>
+    <div id="flex-narrator-container">
+        <div id="narrator-container" class="hide">
+            <div>
+                <p id="narrator">Once Upon A Time</p>
+            </div>
+            <div>
+                <button id="continue">continue...</button>
+            </div>
+        </div>
     </div>
     <div id="character-dialogue-container" class="hide">
         <p class="dialogue">Text</p>
