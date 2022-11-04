@@ -77,17 +77,17 @@ body {
 
 #skill-tree {
     display: grid;
+    height: 100%;
     grid-template-columns: 1fr 0.25fr;
-    grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+    grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
     grid-template-areas: 
     "skills ."
-    "ins ."
-    "int ."
-    "per ."
-    "dexch ."
-    "att ."
-    "dex ."
-    "hea .";
+    "ins one"
+    "int two"
+    "per three"
+    "dex four"
+    "att five"
+    "hea six";
 }
 
 #skill-heading {
@@ -102,17 +102,33 @@ body {
 #per {
     grid-area: per;
 }
-#dexch {
-    grid-area: dexch;
+#dex {
+    grid-area: dex;
 }
 #att {
     grid-area: att;
 }
-#dex {
-    grid-area: dex;
-}
 #hea {
     grid-area: hea;
+}
+
+#number-1{
+    grid-area: one;
+}
+#number-2{
+    grid-area: two;
+}
+#number-3{
+    grid-area: three;
+}
+#number-4{
+    grid-area: four;
+}
+#number-5{
+    grid-area: five;
+}
+#number-6{
+    grid-area: six;
 }
 
 #classes-container{

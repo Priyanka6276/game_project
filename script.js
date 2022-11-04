@@ -15,12 +15,18 @@ const nameWarning = document.querySelector(".warning") // warning messages
 //Classes Container Variables
 const classesContainer = document.querySelector("#classes-container") // the container that contains the class information
 const warriorClass = document.querySelector("#warrior")
-const rogueClass = document.querySelector("rogue")
-const mageClass = document.querySelector("mage")
+const rogueClass = document.querySelector("#rogue")
+const mageClass = document.querySelector("#mage")
 
 
 // SKill Tree Container Variables
 const skillTreeContainer = document.querySelector("#skills-tree-container") // container for the list of skills
+const insightNum = document.querySelector("#number-1")
+const intimidationNum = document.querySelector("#number-2")
+const persuasionNum = document.querySelector("#number-3")
+const dexNum = document.querySelector("#number-4")
+const attackNum = document.querySelector("#number-5")
+const healthNum = document.querySelector("#number-6")
 
 //Character Picture Container Variables
 const characCreatPicContainer = document.querySelector("#character-creation-picture-container") //container for character picture in character creation
@@ -59,23 +65,21 @@ class Player {
 //REFERENCES TO CHOSENCLASS IN THE CLASS PLAYER
 const warrior = {
     name: "Warrior",
-    insight: 1,
+    insight: 2,
     intimidation: 5,
-    persuasion: 2,
-    dexterityCheck: 2,
+    persuasion: -1,
+    dexterity: 2,
     attack: 5,
-    dexterity: 11,
     health: 20,
 }
 
 const rogue = {
     name: "Rogue",
     insight: 2,
-    intimidation: 1,
+    intimidation: -1,
     persuasion: 5,
-    dexterityCheck: 5,
-    attack: 1,
-    dexterity: 16,
+    dexterity: 5,
+    attack: 3,
     health: 15,
 }
 
@@ -84,17 +88,45 @@ const mage = {
     insight: 5,
     intimidation: 2,
     persuasion: 1,
-    dexterityCheck: 1,
+    dexterity: -1,
     attack: 7,
-    dexterity: 13,
     health: 15,
 }
 
+warriorClass.addEventListener("click", () => {
+    // console.log(warrior)
+    insightNum.textContent = warrior.insight
+    intimidationNum.textContent = warrior.intimidation
+    persuasionNum.textContent = warrior.persuasion
+    dexNum.textContent = warrior.dexterity
+    attackNum.textContent = warrior.attack
+    healthNum.textContent = warrior.health 
+})
+
+rogueClass.addEventListener("click", () => {
+    insightNum.textContent = rogue.insight
+    intimidationNum.textContent = rogue.intimidation
+    persuasionNum.textContent = rogue.persuasion
+    dexNum.textContent = rogue.dexterity
+    attackNum.textContent = rogue.attack
+    healthNum.textContent = rogue.health 
+})
+
+mageClass.addEventListener("click", () => {
+    insightNum.textContent = mage.insight
+    intimidationNum.textContent = mage.intimidation
+    persuasionNum.textContent = mage.persuasion
+    dexNum.textContent = mage.dexterity
+    attackNum.textContent = mage.attack
+    healthNum.textContent = mage.health 
+})
+
 
 const characterCreation = { //object that contains functions for character creation
-    playerName: [],
+    player: [],
     playerNameReady: false,
-    nameChracter: function (nameParam) {
+    playerCharacReady:false,
+    nameCharacter: function (nameParam) {
         if(characName.value === "") { //prevents submit button from working if character name field empty
             console.log("put thy name!")
             nameWarning.classList.remove("hide")
@@ -102,26 +134,19 @@ const characterCreation = { //object that contains functions for character creat
         }
         if(!this.playerNameReady) { // replaces input and submit area with character name
             console.log("Player name set")
-            this.playerName.push(characName.value)
             nameContainer.textContent = characName.value
             this.playerNameReady = true
             // console.log(characterCreation.playerName)
         }
     },
-    chooseClass: function () {
-        
-    }
-    
+       
 }
 
 submitNameButton.addEventListener("click", (event) => { //after submit button is pressed the name of the character is added.
     event.preventDefault()
-    characterCreation.nameChracter()
+    characterCreation.nameCharacter()
 })
 
-warriorClass.addEventListener("mouseover", () => {
-
-})
 
 
 //===================STORY BEGINS===================
