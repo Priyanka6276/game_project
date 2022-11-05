@@ -24,7 +24,7 @@
             <div id="name-flex">
                 <div id="enter-name">
                     <label for="character-name"> Enter your name: </label>
-                    <input type="text" id="character-name" maxlength="10">
+                    <input type="text" id="character-name" maxlength="12">
                 </div>
                 <div>
                     <button id="submit-name"> Submit </button>
@@ -40,6 +40,7 @@
         <div id="skills-tree-container" class="hide">
             <div id="skill-tree">
                 <h2 id="skill-heading">Details</h2>
+                <h3 id="class">Class</h3>
                 <p id="ins">Insight</p>
                 <p id="int">Intimidation</p>
                 <p id="per">Persuasion</p>
@@ -56,29 +57,31 @@
         </div>
         <div id="classes-container" class="hide">
             <div id="display-classes">
-                <div id="warrior">
+                <button id="warrior">
                     <h2 class="class-name">Warrior</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
+                    <p id="warrior-class" class="hide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
                         aspernatur
                         vel, repellat sint deleniti. Consequatur maxime iusto laudantium quibusdam ea repellat. Autem,
                         doloribus? Assumenda, doloribus!</p>
-                </div>
-                <div id="rogue">
+                </button>
+                <button id="rogue">
                     <h2 class="class-name">Rogue</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos iste possimus recusandae,
+                    <p id="rogue-class" class="hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos iste possimus recusandae,
                         minima
                         voluptate perspiciatis quasi atque odio iure itaque eos vel. Tempora perspiciatis tempore
                         doloremque
                         molestiae omnis iste ea.</p>
-                </div>
-                <div id="mage">
+                </button>
+                <button id="mage">
                     <h2 class="class-name">Mage</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perferendis eveniet ea ullam
+                    <p id="mage-class" class="hide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perferendis eveniet
+                        ea ullam
                         ipsam,
                         eaque
                         assumenda alias laudantium nesciunt ratione molestias nulla mollitia, nemo veritatis doloremque
                         asperiores.Repudiandae, molestias possimus.</p>
-                </div>
+                </button>
+                <button id="confirm-class">Confirm</button>
             </div>
         </div>
         <div id="ready-button-container" class="hide">

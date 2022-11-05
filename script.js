@@ -14,19 +14,24 @@ const nameWarning = document.querySelector(".warning") // warning messages
 
 //Classes Container Variables
 const classesContainer = document.querySelector("#classes-container") // the container that contains the class information
-const warriorClass = document.querySelector("#warrior")
+const warriorClass = document.querySelector("#warrior") 
 const rogueClass = document.querySelector("#rogue")
 const mageClass = document.querySelector("#mage")
+const warriorInfo = document.querySelector("#warrior-class")
+const rogueInfo = document.querySelector("#rogue-class")
+const mageInfo = document.querySelector("#mage-class")
+const confirmBtn = document.querySelector("#confirm-class")
 
 
 // SKill Tree Container Variables
 const skillTreeContainer = document.querySelector("#skills-tree-container") // container for the list of skills
-const insightNum = document.querySelector("#number-1")
-const intimidationNum = document.querySelector("#number-2")
-const persuasionNum = document.querySelector("#number-3")
-const dexNum = document.querySelector("#number-4")
-const attackNum = document.querySelector("#number-5")
-const healthNum = document.querySelector("#number-6")
+let className = document.querySelector("#class")
+let insightNum = document.querySelector("#number-1")
+let intimidationNum = document.querySelector("#number-2")
+let persuasionNum = document.querySelector("#number-3")
+let dexNum = document.querySelector("#number-4")
+let attackNum = document.querySelector("#number-5")
+let healthNum = document.querySelector("#number-6")
 
 //Character Picture Container Variables
 const characCreatPicContainer = document.querySelector("#character-creation-picture-container") //container for character picture in character creation
@@ -53,77 +58,102 @@ function gameStart() { //function that hides the start screen to reveal the char
 
 //===================CHARACTER CREATION SCREEN FUNCTIONS===================
 
+// class Player {
+//     constructor(name, chosenClass) {
+//         this.name = name;
+//         this.chosenClass = chosenClass;
+//         this.money = 50;
+//         this.inventory = {}
+//     }
+// }
+
 class Player {
-    constructor(name, chosenClass) {
+    constructor(name,) {
         this.name = name;
-        this.chosenClass = chosenClass;
+        this.chosenClass = [];
         this.money = 50;
         this.inventory = {}
     }
 }
 
+
 //REFERENCES TO CHOSENCLASS IN THE CLASS PLAYER
-const warrior = {
-    name: "Warrior",
-    insight: 2,
-    intimidation: 5,
-    persuasion: -1,
-    dexterity: 2,
-    attack: 5,
-    health: 20,
-}
+const characterClass = [
+    warrior = {
+        name: "Warrior",
+        insight: 2,
+        intimidation: 5,
+        persuasion: -1,
+        dexterity: 2,
+        attack: 5,
+        health: 20,
+    },
+    rogue = {
+        name: "Rogue",
+        insight: 2,
+        intimidation: -1,
+        persuasion: 5,
+        dexterity: 5,
+        attack: 3,
+        health: 15,
+    },
+    mage = {
+        name: "Mage",
+        insight: 5,
+        intimidation: 2,
+        persuasion: 1,
+        dexterity: -1,
+        attack: 7,
+        health: 15,
+    }
+]
 
-const rogue = {
-    name: "Rogue",
-    insight: 2,
-    intimidation: -1,
-    persuasion: 5,
-    dexterity: 5,
-    attack: 3,
-    health: 15,
-}
-
-const mage = {
-    name: "Mage",
-    insight: 5,
-    intimidation: 2,
-    persuasion: 1,
-    dexterity: -1,
-    attack: 7,
-    health: 15,
-}
-
+//When you click the information is shown on the details side of character creation
 warriorClass.addEventListener("click", () => {
-    // console.log(warrior)
-    insightNum.textContent = warrior.insight
-    intimidationNum.textContent = warrior.intimidation
-    persuasionNum.textContent = warrior.persuasion
-    dexNum.textContent = warrior.dexterity
-    attackNum.textContent = warrior.attack
-    healthNum.textContent = warrior.health 
+    warriorInfo.classList.toggle("hide")
+    rogueInfo.classList.add("hide")
+    mageInfo.classList.add("hide")
+    className.textContent = characterClass[0].name
+    insightNum.textContent = characterClass[0].insight
+    intimidationNum.textContent = characterClass[0].intimidation
+    persuasionNum.textContent = characterClass[0].persuasion
+    dexNum.textContent = characterClass[0].dexterity
+    attackNum.textContent = characterClass[0].attack
+    healthNum.textContent = characterClass[0].health 
 })
 
 rogueClass.addEventListener("click", () => {
-    insightNum.textContent = rogue.insight
-    intimidationNum.textContent = rogue.intimidation
-    persuasionNum.textContent = rogue.persuasion
-    dexNum.textContent = rogue.dexterity
-    attackNum.textContent = rogue.attack
-    healthNum.textContent = rogue.health 
+    rogueInfo.classList.toggle("hide")
+    warriorInfo.classList.add("hide")
+    mageInfo.classList.add("hide")
+    className.textContent = characterClass[1].name
+    insightNum.textContent = characterClass[1].insight
+    intimidationNum.textContent = characterClass[1].intimidation
+    persuasionNum.textContent = characterClass[1].persuasion
+    dexNum.textContent = characterClass[1].dexterity
+    attackNum.textContent = characterClass[1].attack
+    healthNum.textContent = characterClass[1].health 
 })
 
 mageClass.addEventListener("click", () => {
-    insightNum.textContent = mage.insight
-    intimidationNum.textContent = mage.intimidation
-    persuasionNum.textContent = mage.persuasion
-    dexNum.textContent = mage.dexterity
-    attackNum.textContent = mage.attack
-    healthNum.textContent = mage.health 
+    mageInfo.classList.toggle("hide")
+    warriorInfo.classList.add("hide")
+    rogueInfo.classList.add("hide")
+    className.textContent = characterClass[2].name
+    insightNum.textContent = characterClass[2].insight
+    intimidationNum.textContent = characterClass[2].intimidation
+    persuasionNum.textContent = characterClass[2].persuasion
+    dexNum.textContent = characterClass[2].dexterity
+    attackNum.textContent = characterClass[2].attack
+    healthNum.textContent = characterClass[2].health 
 })
+
 
 
 const characterCreation = { //object that contains functions for character creation
     player: [],
+    dndClass: [],
+    playerReady: false,
     playerNameReady: false,
     playerCharacReady:false,
     nameCharacter: function (nameParam) {
@@ -139,6 +169,33 @@ const characterCreation = { //object that contains functions for character creat
             // console.log(characterCreation.playerName)
         }
     },
+    chooseClassCharacter: function () {
+        // if(this.dndClass = []){
+        //     console.log('pick thy character!')
+        //     return this.playerCharacReady = false
+        // }
+        if (!this.playerCharacReady) {
+            warriorClass.addEventListener("click", () => {
+                console.log(characterClass[0])
+            })
+            rogueClass.addEventListener("click", () => {
+                
+                console.log(characterClass[1])
+            })
+
+            mageClass.addEventListener("click", () => {
+               
+                console.log(characterClass[2])
+            })
+            // this.playerCharacReady = true
+            // console.log('character selected')
+        }
+
+        
+    },
+    setPlayer: function () {
+        this.player.push(new Player(characName.value, this.dndClass[0]))
+    }
        
 }
 
@@ -146,6 +203,14 @@ submitNameButton.addEventListener("click", (event) => { //after submit button is
     event.preventDefault()
     characterCreation.nameCharacter()
 })
+
+characterCreation.chooseClassCharacter()
+
+readyButton.addEventListener("click", () => {
+    characterCreation.setPlayer()
+})
+
+
 
 
 
@@ -175,10 +240,10 @@ class SecondaryCharacter {
 
 //class for enemies to fight
 class Enemy {
-    constructor(name, attack, dexterityCheck) {
+    constructor(name, attack, dexterity) {
         this.name= name;
         this.attack = attack;
-        this.dexterity = dexterityCheck;
+        this.dexterity = dexterity;
     }
 }
 

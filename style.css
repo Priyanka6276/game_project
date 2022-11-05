@@ -81,7 +81,7 @@ body {
     grid-template-columns: 1fr 0.25fr;
     grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
     grid-template-areas: 
-    "skills ."
+    "skills class"
     "ins one"
     "int two"
     "per three"
@@ -92,6 +92,9 @@ body {
 
 #skill-heading {
     grid-area: skills;
+}
+#class {
+    grid-area: class;
 }
 #ins {
     grid-area: ins;
@@ -134,43 +137,53 @@ body {
 #classes-container{
     border: 2px solid black;
     grid-area: classes-container;
-    height: fit-content;
+    height: 100%;
 }
 
 #display-classes {
     border: 2px solid sienna;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    
 }
 
 #warrior {
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #rogue {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 #mage {
-    border: 2px solid green;
+    /* border: 2px solid green; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .class-name {
     border: 2px solid black;
     width: fit-content;
+}
+
+#confirm-class {
+    width: 40%;
 }
 
 #ready-button-container {
