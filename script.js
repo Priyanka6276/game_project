@@ -170,32 +170,35 @@ const characterCreation = { //object that contains functions for character creat
         }
     },
     chooseClassCharacter: function () {
-        // if(this.dndClass = []){
-        //     console.log('pick thy character!')
-        //     return this.playerCharacReady = false
-        // }
+        if(this.dndClass = []){
+            console.log('pick thy character!')
+            nameWarning.classList.remove("hide")
+            return this.playerCharacReady = false
+        }
         if (!this.playerCharacReady) {
             warriorClass.addEventListener("click", () => {
-                console.log(characterClass[0])
+                this.dndClass.shift()
+                this.dndClass.push(characterClass[0])
+                this.playerCharacReady = true
+                console.log(this.dndClass)
             })
             rogueClass.addEventListener("click", () => {
-                
-                console.log(characterClass[1])
+                this.dndClass.shift()
+                this.dndClass.push(characterClass[1])
+                this.playerCharacReady = true
+                console.log(this.dndClass)
             })
 
             mageClass.addEventListener("click", () => {
-               
-                console.log(characterClass[2])
+                this.dndClass.shift()
+                this.dndClass.push(characterClass[2])
+                this.playerCharacReady = true
+                console.log(this.dndClass)
             })
-            // this.playerCharacReady = true
-            // console.log('character selected')
         }
 
         
     },
-    setPlayer: function () {
-        this.player.push(new Player(characName.value, this.dndClass[0]))
-    }
        
 }
 
@@ -204,7 +207,14 @@ submitNameButton.addEventListener("click", (event) => { //after submit button is
     characterCreation.nameCharacter()
 })
 
-characterCreation.chooseClassCharacter()
+
+
+
+confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault()
+    characterCreation.chooseClassCharacter()
+})
+
 
 readyButton.addEventListener("click", () => {
     characterCreation.setPlayer()
@@ -285,5 +295,4 @@ continueBtn.addEventListener("click", () => {
 const chapter1 = {
 
 }
-
 
