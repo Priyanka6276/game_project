@@ -58,21 +58,10 @@ function gameStart() { //function that hides the start screen to reveal the char
 
 //===================CHARACTER CREATION SCREEN FUNCTIONS===================
 
-// class Player {
-//     constructor(name, chosenClass) {
-//         this.name = name;
-//         this.chosenClass = chosenClass;
-//         this.money = 50;
-//         this.inventory = {}
-//     }
-// }
-
 class Player {
-    constructor(name,) {
+    constructor(name,chosenClass) {
         this.name = name;
-        this.chosenClass = [];
-        this.money = 50;
-        this.inventory = {}
+        this.chosenClass = chosenClass;
     }
 }
 
@@ -149,7 +138,6 @@ mageClass.addEventListener("click", () => {
 })
 
 
-
 const characterCreation = { //object that contains functions for character creation
     player: [],
     dndClass: [],
@@ -157,12 +145,12 @@ const characterCreation = { //object that contains functions for character creat
     playerNameReady: false,
     playerCharacReady:false,
     nameCharacter: function (nameParam) {
-        if(characName.value === "") { //prevents submit button from working if character name field empty
+        if (characName.value === "") { //prevents submit button from working if character name field empty
             console.log("put thy name!")
             nameWarning.classList.remove("hide")
             return this.playerNameReady = false
         }
-        if(!this.playerNameReady) { // replaces input and submit area with character name
+        if (!this.playerNameReady) { // replaces input and submit area with character name
             console.log("Player name set")
             nameContainer.textContent = characName.value
             this.playerNameReady = true
@@ -170,35 +158,29 @@ const characterCreation = { //object that contains functions for character creat
         }
     },
     chooseClassCharacter: function () {
-        if(this.dndClass = []){
-            console.log('pick thy character!')
-            nameWarning.classList.remove("hide")
-            return this.playerCharacReady = false
+        if (mageInfo.classList.toggle("hide") === true) {
+            this.dndClass.shift()
+            this.dndClass.push(characterClass[2])
+            this.playerCharacReady = true
+        } else if (warriorInfo.classList.toggle("hide") === true) {
+            this.dndClass.shift()
+            this.dndClass.push(characterClass[0])
+            this.playerCharacReady = true
+        } else if (rogueInfo.classList.toggle("hide") === true) {
+            this.dndClass.shift()
+            this.dndClass.push(characterClass[1])
+            this.playerCharacReady = true
         }
-        if (!this.playerCharacReady) {
-            warriorClass.addEventListener("click", () => {
-                this.dndClass.shift()
-                this.dndClass.push(characterClass[0])
-                this.playerCharacReady = true
-                console.log(this.dndClass)
-            })
-            rogueClass.addEventListener("click", () => {
-                this.dndClass.shift()
-                this.dndClass.push(characterClass[1])
-                this.playerCharacReady = true
-                console.log(this.dndClass)
-            })
-
-            mageClass.addEventListener("click", () => {
-                this.dndClass.shift()
-                this.dndClass.push(characterClass[2])
-                this.playerCharacReady = true
-                console.log(this.dndClass)
-            })
-        }
-
-        
+        console.log(this.dndClass)
     },
+    createPlayer: function () {
+        if(this.playerNameReady === true && this.playerCharacReady === true) {
+            this.player.push(new Player(characName.value, this.dndClass[0]))
+            console.log(this.player)
+        }else{
+            console.log('bye')
+        }
+    }
        
 }
 
@@ -209,17 +191,19 @@ submitNameButton.addEventListener("click", (event) => { //after submit button is
 
 
 
+const playerCharacter = characterCreation.player
 
 confirmBtn.addEventListener("click", (event) => {
     event.preventDefault()
     characterCreation.chooseClassCharacter()
+    
 })
 
 
 readyButton.addEventListener("click", () => {
-    characterCreation.setPlayer()
+    characterCreation.createPlayer()
+    console.log(playerCharacter[0].name)
 })
-
 
 
 
@@ -227,6 +211,8 @@ readyButton.addEventListener("click", () => {
 //===================STORY BEGINS===================
 
 //STORY VARIABLES
+
+
 //Containers
 const narratorContainer = document.querySelector("#narrator-container") // refers to the narrator's box
 const characterContainer = document.querySelector("#character-dialogue-container") // refer's to the character picture and dialogue box
@@ -271,28 +257,61 @@ readyButton.addEventListener("click", () => {
     storyBegins()
 })
 
+const chapter1 = [
+    {
+        id: 1,
+        narrator: "A fire sweeps across the village. Screams can be heard all around you.",
+    },
+    {
+        id: 2,
+        narrator: "You stand at the middle of the village.",
+    },
+    {
+        id: 3,
+        dialogue: "How did this happen?",
+    },
+    {
+        id: 4,
+        dialogue: "I should ...",
+        options: [
+            {
+                text: "go help!",
+            },
+            {
+                text: "find help!"
+            }
+        ]
+    }
+]
 
-function startGame () {
-    
-}
+// function startGame () {
+//     playerCharacter[0].inventory = {}
+// }
 
-function continueNarration () {
+// function continueNarration (narratortext) {
+//     const textNode = textBox.find(textNode => textNode.id === narratortext)
+//     narratorTxt.textContent = textBox.narrator 
+// }
 
-}
+// function contDialogue () {
 
-function contDialogue () {
+// }
 
-}
+// function showTextNode(textNodeIndex) {
 
-function chooseOptions () {
+// }
 
-}
+// function chooseOptions () {
 
-continueBtn.addEventListener("click", () => {
+// }
 
-})
+// continueBtn.addEventListener("click", () => {
 
-const chapter1 = {
+// })
 
-}
-
+// const textBox = [
+//     {
+//         id: 1,
+//         narrator: "A fire sweeps across the village.  Screams can be heard all around you.",
+//     }
+// ]
