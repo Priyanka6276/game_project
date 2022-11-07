@@ -57,11 +57,6 @@ function showNarratorText(textIndex){
 }
 
 
-
-// function showChoice(option){
-//     return option.skillCheck === true || option.skillCheck === false
-// }
-
 function showChoice(option) {
     return true
 }

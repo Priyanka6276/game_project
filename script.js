@@ -191,7 +191,7 @@ submitNameButton.addEventListener("click", (event) => { //after submit button is
 
 
 
-const playerCharacter = characterCreation.player
+
 
 confirmBtn.addEventListener("click", (event) => {
     event.preventDefault()
@@ -200,10 +200,7 @@ confirmBtn.addEventListener("click", (event) => {
 })
 
 
-readyButton.addEventListener("click", () => {
-    characterCreation.createPlayer()
-    console.log(playerCharacter[0].name)
-})
+
 
 
 
@@ -212,39 +209,22 @@ readyButton.addEventListener("click", () => {
 
 //STORY VARIABLES
 
+const playerCharacter = []
+const narratorContainer = document.querySelector("#narrator-container")
+const narrator = document.querySelector("#narrator")
+const optionBtn = document.querySelector("#option-buttons")
 
-//Containers
-const narratorContainer = document.querySelector("#narrator-container") // refers to the narrator's box
-const characterContainer = document.querySelector("#character-dialogue-container") // refer's to the character picture and dialogue box
-const optionsContainer = document.querySelector("#options-container") // refers to the options button
+readyButton.addEventListener("click", () => {
+    characterCreation.createPlayer()
+    console.log(characterCreation.player[0].chosenClass.insight)
+    playerCharacter.push(characterCreation.player[0])
+    console.log(playerCharacter) 
+    readyStory()
+})
 
-//Buttons
-const optionBtn = document.querySelector(".btn") // refers to the options button
-const continueBtn = document.querySelector("#continue") // refers to the continue button in the narrator container
-
-//Text Elements
-const narratorTxt = document.querySelector("#narrator") //refers to the narrator's dialogue
-
-//CLASSES FOR SECONDARY CHARACTERS AND ENEMIES
-
-//class for secondary characters that won't fight you
-class SecondaryCharacter {
-    constructor(name){
-        this.name = name;
-    }
-}
-
-//class for enemies to fight
-class Enemy {
-    constructor(name, attack, dexterity) {
-        this.name= name;
-        this.attack = attack;
-        this.dexterity = dexterity;
-    }
-}
 
 //TO MOVE ON TO THE ADVENTURE
-function storyBegins() {
+function readyStory() {
     nameContainer.classList.add("hide")
     classesContainer.classList.add("hide")
     readyContainer.classList.add("hide")
@@ -253,65 +233,288 @@ function storyBegins() {
     narratorContainer.classList.remove("hide")
 }
 
-readyButton.addEventListener("click", () => {
-    storyBegins()
-})
+class Enemy {
+    constructor(name, attack, dexterity, health) {
+        this.name= name;
+        this.attack = attack;
+        this.dexterity = dexterity;
+        this.health = health;
+    }
+}
 
-const chapter1 = [
+const goblin1 = new Enemy("Goblin Minion", 1, 0, 6)
+
+function storyBegins () {
+    showNarratorText("a")
+}
+
+function showNarratorText(textIndex){
+    const textNode = story.find(textNode => textNode.id === textIndex)
+    narrator.innerText = textNode.text
+    while (optionBtn.firstChild){
+        optionBtn.removeChild(optionBtn.firstChild)
+    }
+    textNode.choices.forEach( option => {
+        if (showChoice(option)) {
+            const button = document.createElement("button")
+            button.innerText = option.choice
+            button.classList.add("btn")
+            button.addEventListener("click", () => selectChoices(option))
+            optionBtn.appendChild(button)
+        }
+    })
+}
+
+function showChoice(option) {
+    return true
+}
+
+function selectChoices(option){
+    let nextTextId = ""
+    if(option.skillCheck === true) {
+        nextTextId = option.destination[0]
+    } else if (option.skillCheck === false) {
+        nextTextId = option.destination[1]
+    }
+    if(nextTextId === 0){
+        return storyBegins()
+    }
+    showNarratorText(nextTextId)
+}
+
+function d20(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+}
+
+function dexterityCheck(dc) {
+    if(playerCharacter.chosenClass.dexterity + d20(0, 20) > dc) {
+        console.log(playerCharacter.chosenClass)
+        return true
+    } else {
+        return false
+    }
+}
+
+function persuasionCheck(dc) {
+    if(d20(0,20) > dc) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function intimidationCheck(dc) {
+    if(d20(0,20) > dc) {
+        return true
+    } else {
+        return false
+    }
+}
+
+function insightCheck(dc) {
+    if(d20(0,20) > dc) {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+
+
+const story = [
     {
-        id: 1,
-        narrator: "A fire sweeps across the village. Screams can be heard all around you.",
-    },
-    {
-        id: 2,
-        narrator: "You stand at the middle of the village.",
-    },
-    {
-        id: 3,
-        dialogue: "How did this happen?",
-    },
-    {
-        id: 4,
-        dialogue: "I should ...",
-        options: [
+        id: "a",
+        text: "You wake up in the middle of a village that is being overrun with goblins.",
+        choices: [
             {
-                text: "go help!",
-            },
-            {
-                text: "find help!"
+                choice: "Continue",
+                skillCheck: true,
+                destination: ["b"]
             }
         ]
+    },
+    {
+        id: "b",
+        text: "As you are looking around, you see someone in a tree trying to escape a very angry goblin. Do you...",
+        choices: [
+            {
+                choice: "[Dexterity] Save the person",
+                skillCheck: dexterityCheck(7),
+                destination: ["c1", "c2"]
+            },
+            {
+                choice: "Leave the person to fend for themselves",
+                skillCheck: true,
+                destination: ["death1"],
+            }
+        ]
+    },
+    {
+        id: "death1",
+        text: "You selfishly leave the person to die. While you are running away you trip on a rock and fall off a cliff. Karma...",
+        choices: [
+            {
+                choice: "Restart to be a better hero.",
+                skillCheck: true,
+                destination: [0],
+            }
+        ]
+    },{
+        id: "c1",
+        text: "You successfully take down the goblin and save the person from the tree. They thank you. You ask about what happened in the village, but the person is hesitant to answer.",
+        choices: [
+            {
+                choice: "[Persuasion] Ask them nicely.",
+                skillCheck: persuasionCheck(10),
+                destination: ["d1","d3"],
+            },
+            {
+                choice: "[Intimidation] Ask them not so nicely.",
+                skillCheck: intimidationCheck(8),
+                destination: ["d2", "d3"],
+            },
+            {
+                choice: "Ask them again",
+                skillCheck: true,
+                destination: ["d4"]
+            }
+        ]
+    },
+    {
+        id: "c2",
+        text: "You think you are being sneaky, but this particular goblin is very keen. You enter into combat.",
+        choices: [
+            {
+                choice: "[Dexterity] Attack",
+                skillCheck: dexterityCheck(goblin1.dexterity + d20(0,20)),
+                destination: ["c3", "c4"]
+            },
+            {
+                choice: "Run away because this is not your problem.",
+                destiantion: ["death1"]
+            }
+        ]
+    },
+    {
+        id: "c3",
+        text: `This goblin is no match for a ${playerCharacter[0]}. The goblin is defeated and the person is safe though they are unimpressed with your sneaking skills.`,
+        choices: [
+            {
+                choice: "Talk to the person.",
+                skillCheck: true,
+                destination: ["c1"]
+            }
+         ]
+    },
+    {
+        id: "c4",
+        text: "The goblin gains the upperhand in the fight. Now their attention is on you. The villager that was in the tree takes down the goblin from behind.",
+        choices: [
+            {
+                choice: "Continue",
+                skillCheck: true,
+                destination:["d5"]
+            }
+            
+        ]
+    },
+    {
+        id: "d1",
+        text: "You're so nice to them that they feel bad about keeping secrets from you. They tell you that a group of villagers stole a jewel from the Goblin King. Disappointed in the villagers, you offer to bring the jewel back to the Goblin King.",
+        choices: [
+            {
+                choice: "Continue",
+                skillCheck: true,
+                destination:["e1"]
+            }
+        ]
+    },
+    {
+        id:"d2",
+        text: "You're so mean to them, that they burst into tears.They tell you that a group of villagers stole a jewel from the Goblin King. Disappointed in the villagers, you offer to bring the jewel back to the Goblin King. ",
+        choices: [
+            {
+                choice: "Continue",
+                skillCheck: true,
+                destination:["e1"]
+            }
+        ]
+    },
+    {
+        id:"d3",
+        text: "They become annoyed with you and storm off. I guess saving them from a goblin meant nothing. ",
+        choices: [
+            {
+                choice: "[Insight] Observe the goblins",
+                skillCheck: insightCheck(10),
+                destination:["e2", "e3"]
+            }
+        ]
+    },
+    {
+        id: "d4",
+        text: "They reveal nothing. They thank you again and walk away.",
+        choices:[
+            {
+                choice: "[Insight] Observe the goblins",
+                skillCheck: insightCheck(10),
+                destination:["e2", "e3"]
+            }
+        ]
+    },
+    {
+        id: "d5",
+        text: "You thank the villager for their assistance. They seem unimpressed with you, but they still thank you for trying.",
+        choices: [ 
+            {
+                choice: "[Persuasion] Ask them nicely about the goblins.",
+                skillCheck: persuasionCheck(10),
+                destination: ["d1","d3"],
+            },
+            {
+                choice: "[Intimidation] Ask them not so nicely about the goblins.",
+                skillCheck: intimidationCheck(16),
+                destination: ["d2", "d3"],
+            },
+            {
+                choice: "Ask them again",
+                skillCheck: true,
+                destination: ["d4"]
+            }
+        ]
+    },
+    {
+        id: "e1",
+        text: "You head to the forest to return the jewel to the Goblin King. You are not sure what lies ahead but you are excited.",
+        choices: [
+            {
+                choice: "Continue Story",
+                skillCheck: true,
+                destination: ["end"]
+            }
+        ]
+    },
+    {
+        id: "e2",
+        text: "You know goblins usually stay deep in the woods. So for them to come out would mean that they were intending to come to this village. You come to the conclusion that the villagers did something to the goblins to make them angry.",
+        choices: [
+            {
+                choice: "Continue",
+                skillCheck: true,
+                destination: ["end"]
+            }
+        ]
+    },
+    {
+        id: "end",
+        text: "Story in development."
     }
+
+
+
+
+    
 ]
 
-// function startGame () {
-//     playerCharacter[0].inventory = {}
-// }
-
-// function continueNarration (narratortext) {
-//     const textNode = textBox.find(textNode => textNode.id === narratortext)
-//     narratorTxt.textContent = textBox.narrator 
-// }
-
-// function contDialogue () {
-
-// }
-
-// function showTextNode(textNodeIndex) {
-
-// }
-
-// function chooseOptions () {
-
-// }
-
-// continueBtn.addEventListener("click", () => {
-
-// })
-
-// const textBox = [
-//     {
-//         id: 1,
-//         narrator: "A fire sweeps across the village.  Screams can be heard all around you.",
-//     }
-// ]
+storyBegins()
