@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TBD</title>
+    <title>Dungeons and Dragons Inspired</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
@@ -14,9 +14,7 @@
     <div id="start-container">
         <div id="start-flex">
             <h2>Are you ready?</h2>
-            <div id="start-buttton">
-                <button id="start">Start Adventure</button>
-            </div>
+            <input type="image" src="images/button-pink.png" id="start">
         </div>
     </div>
     <div id="grid-character-creation">
@@ -31,11 +29,15 @@
                 </div>
                 <div class="warning hide">Enter your character's name</div>
             </div>
+            
         </div>
         <div id="character-creation-picture-container" class="hide">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis sed tenetur modi nesciunt numquam
-                voluptas quis velit consequatur, ipsam quae! Sapiente, corporis et soluta ipsa fugiat harum recusandae
-                obcaecati id!</p>
+            <div id="character-pic-flex">
+                <img src="images/sword-block.png" id="warrior-sword" class="hide" alt="">
+                <img src="images/bow-block.png" id="rogue-bow" class="hide" alt="">
+                <img src="images/mage-block.png" id="mage-staff" class="hide" alt="">
+            </div>
+            
         </div>
         <div id="skills-tree-container" class="hide">
             <div id="skill-tree">
@@ -59,27 +61,21 @@
             <div id="display-classes">
                 <button id="warrior">
                     <h2 class="class-name">Warrior</h2>
-                    <p id="warrior-class" class="hide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto sunt debitis id hic quod
-                        aspernatur
-                        vel, repellat sint deleniti. Consequatur maxime iusto laudantium quibusdam ea repellat. Autem,
-                        doloribus? Assumenda, doloribus!</p>
+                    <p id="warrior-class" class="hide">
+                        You began training to be part of the royal guards at a young age. With your strength and presence, a person would be a fool to mess with you. 
+                    </p>
                 </button>
                 <button id="rogue">
                     <h2 class="class-name">Rogue</h2>
-                    <p id="rogue-class" class="hide">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos iste possimus recusandae,
-                        minima
-                        voluptate perspiciatis quasi atque odio iure itaque eos vel. Tempora perspiciatis tempore
-                        doloremque
-                        molestiae omnis iste ea.</p>
+                    <p id="rogue-class" class="hide">
+                        You grew up defending yourself. An expert in stealth and dexterity, almost no one would see you coming.
+                    </p>
                 </button>
                 <button id="mage">
                     <h2 class="class-name">Mage</h2>
-                    <p id="mage-class" class="hide">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta perferendis eveniet
-                        ea ullam
-                        ipsam,
-                        eaque
-                        assumenda alias laudantium nesciunt ratione molestias nulla mollitia, nemo veritatis doloremque
-                        asperiores.Repudiandae, molestias possimus.</p>
+                    <p id="mage-class" class="hide">
+                        Top of your class at the magic school, you are a master of your craft. Conjuring burning hands will bring fear to your enemies. 
+                    </p>
                 </button>
                 <button id="confirm-class">Confirm</button>
                 <div class="warning hide">Choose A Character</div>
@@ -89,8 +85,8 @@
             <button id="ready">Start Your Adventure</button>
         </div>
     </div>
-    <div id="flex-narrator-container">
-        <div id="narrator-container" class="hide">
+    <div id="narrator-container" class="hide">
+        <div id="flex-narrator-container">
             <div id="narrator"> fooo </div>
             <div id="option-buttons">
                 <button class="btn">Option 1</button>

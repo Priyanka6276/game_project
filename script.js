@@ -2,7 +2,7 @@
 
 //START VARIABLES
 const startContainer = document.querySelector("#start-container") //the container at the start
-const startButton = document.querySelector("#start-buttton") // the start button at the beginning of the game
+const startButton = document.querySelector("#start") // the start button at the beginning of the game
 
 
 //CHARACTER CREATION VARIABLES
@@ -11,6 +11,11 @@ const nameContainer = document.querySelector("#name-container") //the container 
 const submitNameButton = document.querySelector("#submit-name") // the submit button
 const characName = document.querySelector("#character-name") // character name value
 const nameWarning = document.querySelector(".warning") // warning messages
+
+//Class Picture Variables 
+const warriorPic = document.querySelector("#warrior-sword")
+const roguePic = document.querySelector("#rogue-bow")
+const magePic = document.querySelector("#mage-staff")
 
 //Classes Container Variables
 const classesContainer = document.querySelector("#classes-container") // the container that contains the class information
@@ -50,6 +55,7 @@ startButton.addEventListener("click", () => { //when start button is clicked it 
 function gameStart() { //function that hides the start screen to reveal the character creation screen
     startContainer.classList.add("hide")
     nameContainer.classList.remove("hide")
+    nameContainer.classList.add("flex")
     classesContainer.classList.remove("hide")
     readyContainer.classList.remove("hide")
     characCreatPicContainer.classList.remove("hide")
@@ -100,6 +106,9 @@ const characterClass = [
 //When you click the information is shown on the details side of character creation
 warriorClass.addEventListener("click", () => {
     warriorInfo.classList.toggle("hide")
+    warriorPic.classList.remove("hide")
+    roguePic.classList.add("hide")
+    magePic.classList.add("hide")
     rogueInfo.classList.add("hide")
     mageInfo.classList.add("hide")
     className.textContent = characterClass[0].name
@@ -113,6 +122,9 @@ warriorClass.addEventListener("click", () => {
 
 rogueClass.addEventListener("click", () => {
     rogueInfo.classList.toggle("hide")
+    warriorPic.classList.add("hide")
+    roguePic.classList.remove("hide")
+    magePic.classList.add("hide")
     warriorInfo.classList.add("hide")
     mageInfo.classList.add("hide")
     className.textContent = characterClass[1].name
@@ -126,6 +138,9 @@ rogueClass.addEventListener("click", () => {
 
 mageClass.addEventListener("click", () => {
     mageInfo.classList.toggle("hide")
+    warriorPic.classList.add("hide")
+    roguePic.classList.add("hide")
+    magePic.classList.remove("hide")
     warriorInfo.classList.add("hide")
     rogueInfo.classList.add("hide")
     className.textContent = characterClass[2].name
@@ -226,6 +241,7 @@ readyButton.addEventListener("click", () => {
 //TO MOVE ON TO THE ADVENTURE
 function readyStory() {
     nameContainer.classList.add("hide")
+    nameContainer.classList.remove("flex")
     classesContainer.classList.add("hide")
     readyContainer.classList.add("hide")
     characCreatPicContainer.classList.add("hide")
@@ -287,7 +303,7 @@ function d20(min, max) {
 }
 
 function dexterityCheck(dc) {
-    if(playerCharacter.chosenClass.dexterity + d20(0, 20) > dc) {
+    if(d20(0, 20) > dc) {
         console.log(playerCharacter.chosenClass)
         return true
     } else {
@@ -320,7 +336,7 @@ function insightCheck(dc) {
 }
 
 
-
+//STORY 
 
 const story = [
     {
@@ -508,13 +524,14 @@ const story = [
     },
     {
         id: "end",
-        text: "Story in development."
+        text: "Story in development.",
+        choices: [
+            {
+                choice: "Return To Start Menu",
+                skillCheck: true,
+            }
+        ]
     }
-
-
-
-
-    
 ]
 
 storyBegins()

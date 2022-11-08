@@ -10,6 +10,9 @@ body {
     align-items: center;
     width: 100%;
     height: 100%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url(images/start-background.png);
+    color: aliceblue;
 }
 
 /*======================REUSUABLES======================*/
@@ -17,66 +20,135 @@ body {
     display: none;
 }
 
-.no-bullets {
-    list-style-type: none;
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*======================START SCREEN======================*/
 #start-container {
-    border: 2px solid black;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    
 }
 
 #start-flex {
+    /* border: 2px solid salmon; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+}
+
+#start {
+    cursor: pointer;
+    width: 20%;
+}
+
+#start-flex > h2 {
+    color: rgb(212, 214, 235);
+    font-size: 5vh;
 }
 
 /*======================CHARACTER CREATION======================*/
 
 #grid-character-creation {
     display: grid;
+    width: 100vw;
     height: 100vh;
-    grid-template-columns: 0.5fr 1.5fr 0.75fr;
+    grid-template-columns: 1fr 0.75fr 1fr;
     grid-template-rows: 0.5fr 1.5fr 0.3fr 0.2fr;
     grid-template-areas: 
     "name-container character-creation-picture-container ."
     "skills-tree-container character-creation-picture-container classes-container"
     ". character-creation-picture-container classes-container"
     ". ready-button-container .";
-    grid-gap: 0.3rem
+    grid-gap: 0.3rem;
+    background-image: url(images/start-background.png);
 }
 
 #name-container {
-    border: 2px solid black;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    /* border: 2px solid blue; */
     grid-area: name-container;
-
+    width: 100%;
+    height: 100%;
+    background-image: url(images/name-plaque.png);
+    background-repeat: no-repeat;
+    background-size: 35vw 23vh;
+    background-position: center;
+    font-size: 5vh;
 }
+
+
 
 #name-flex {
+    /* border: 2px solid orange; */
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
+label {
+    font-size: 4vh;
+}
+
+#character-name {
+    width: 10vw;
+}
+
+#submit-name {
+    width: 10vw;
+    background-color: #cc9a25;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+
 #character-creation-picture-container {
-    border: 2px solid aqua;
+    /* border: 2px solid aqua; */
     grid-area: character-creation-picture-container;
 }
 
+#character-pic-flex {
+    /* border: 2px solid salmon; */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#warrior-sword {
+    height: 75%;
+}
+
+#rogue-bow {
+    height: 75%;
+}
+
+#mage-staff {
+    height: 75%;
+}
+
 #skills-tree-container {
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     grid-area: skills-tree-container;
+    background-image: url(images/name-plaque.png);
+    background-repeat: no-repeat;
+    background-size: 35vw 55vh;
+    background-position: center;
+    height: fit-content;
+
 }
 
 #skill-tree {
     display: grid;
+    /* border: 2px solid pink; */
     height: 100%;
     grid-template-columns: 1fr 0.25fr;
     grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
@@ -92,56 +164,86 @@ body {
 
 #skill-heading {
     grid-area: skills;
+    /* border: 2px solid green; */
+    display: flex;
+    justify-content: center;
 }
 #class {
     grid-area: class;
+    display: flex;
+    justify-content: flex-start;
 }
 #ins {
     grid-area: ins;
+    display: flex;
+    justify-content: center;
 }
 #int {
     grid-area: int;
+    display: flex;
+    justify-content: center;
 }
 #per {
     grid-area: per;
+    display: flex;
+    justify-content: center;
 }
 #dex {
     grid-area: dex;
+    display: flex;
+    justify-content: center;
 }
 #att {
     grid-area: att;
+    display: flex;
+    justify-content: center;
 }
 #hea {
     grid-area: hea;
+    display: flex;
+    justify-content: center;
 }
 
 #number-1{
     grid-area: one;
+    display: flex;
+    justify-content: flex-start;
 }
 #number-2{
     grid-area: two;
+    display: flex;
+    justify-content: flex-start;
 }
 #number-3{
     grid-area: three;
+    display: flex;
+    justify-content: flex-start;
 }
 #number-4{
     grid-area: four;
+    display: flex;
+    justify-content: flex-start;
 }
 #number-5{
     grid-area: five;
+    display: flex;
+    justify-content: flex-start;
 }
 #number-6{
     grid-area: six;
+    display: flex;
+    justify-content: flex-start;
 }
 
+
 #classes-container{
-    border: 2px solid black;
+    /* border: 2px solid black; */
     grid-area: classes-container;
     height: 100%;
 }
 
 #display-classes {
-    border: 2px solid sienna;
+    /* border: 2px solid sienna; */
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -151,45 +253,96 @@ body {
 }
 
 #warrior {
-    /* border: 2px solid red; */
+    border: 0.5rem solid #cc9a25;
+    background-image: url(images/red-background.png);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    cursor: pointer;
+    box-shadow: rgba(31, 33, 166, 0.894) 0px 22px 70px 4px;
 }
 
 #rogue {
-    /* border: 2px solid blue; */
+    border: 0.5rem solid #cc9a25;
+    background-image: url(images/red-background.png);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    cursor: pointer;
+    box-shadow: rgba(31, 33, 166, 0.894) 0px 22px 70px 4px;
 }
 
 #mage {
-    /* border: 2px solid green; */
+    border: 0.5rem solid #cc9a25;
+    background-image: url(images/red-background.png);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
+    cursor: pointer;
+    box-shadow: rgba(31, 33, 166, 0.894) 0px 22px 70px 4px;
 }
 
 .class-name {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: fit-content;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+
+}
+
+#warrior-class {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+    font-size: 1.5rem;
+}
+
+#rogue-class {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+    font-size: 1.5rem;
+}
+
+#mage-class {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: aliceblue;
+    font-size: 1.5rem;
 }
 
 #confirm-class {
-    width: 40%;
+    width: 10vw;
+    background-color: #cc9a25;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
 }
 
 #ready-button-container {
-    border: 2px solid black;
-    grid-area: ready-button-container
-    
+    /* border: 2px solid black; */
+    grid-area: ready-button-container;
+}
+
+#ready {
+    border: 5px solid rgb(41, 3, 3);
+    margin-left: 40%;
+    height: 5vh;
+    width: 10vw;
+    background-color: #cc9a25;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    cursor: pointer;
 }
 
 /*======================STORY BEGINS======================*/
@@ -197,23 +350,43 @@ body {
 
 
 #flex-narrator-container {
+    /* border: 2px solid rgb(255, 0, 0); */
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
+    background-image: url(images/name-plaque.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    
 }
 
 #narrator-container {
-    border: 2px solid black;
+    /* border: 2px solid rgb(255, 0, 0); */
     height: fit-content;
     width: fit-content;
 }
 
 #narrator {
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
+    width: 45%;
+    padding: 1%;
+    font-size: 3vh;
+}
+
+#option-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between ;
 }
 
 .btn{
-    background-color: aqua;
+    width: 10vw;
+    background-color: #cc9a25;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3vh;
+    cursor: pointer;
 }
