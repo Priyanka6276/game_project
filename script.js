@@ -71,6 +71,16 @@ class Player {
     }
 }
 
+const dummyObject = {
+    name: "",
+        insight: -200,
+        intimidation: -200,
+        persuasion: -200,
+        dexterity: -200,
+        attack: -200,
+        health: -200,
+}
+
 
 //REFERENCES TO CHOSENCLASS IN THE CLASS PLAYER
 const characterClass = [
@@ -152,6 +162,7 @@ mageClass.addEventListener("click", () => {
     healthNum.textContent = characterClass[2].health 
 })
 
+let playerCharacter = new Player("",dummyObject)
 
 const characterCreation = { //object that contains functions for character creation
     player: [],
@@ -190,6 +201,7 @@ const characterCreation = { //object that contains functions for character creat
     },
     createPlayer: function () {
         if(this.playerNameReady === true && this.playerCharacReady === true) {
+            // playerCharacter = new Player (characName.value, this.dndClass[0])
             this.player.push(new Player(characName.value, this.dndClass[0]))
             console.log(this.player)
         }else{
@@ -219,17 +231,17 @@ confirmBtn.addEventListener("click", (event) => {
 
 //STORY VARIABLES
 
-const playerCharacter = []
+
 const narratorContainer = document.querySelector("#narrator-container")
 const narrator = document.querySelector("#narrator")
 const optionBtn = document.querySelector("#option-buttons")
+const btn = document.querySelector(".btn")
 
 readyButton.addEventListener("click", () => {
     characterCreation.createPlayer()
-    console.log(characterCreation.player[0].chosenClass.insight)
-    playerCharacter.push(characterCreation.player[0])
-    console.log(playerCharacter) 
+    console.log(playerCharacter)
     readyStory()
+    storyBegins()
 })
 
 
@@ -244,6 +256,8 @@ function readyStory() {
     narratorContainer.classList.remove("hide")
 }
 
+
+// Enemy Class
 class Enemy {
     constructor(name, attack, dexterity, health) {
         this.name= name;
@@ -255,16 +269,26 @@ class Enemy {
 
 const goblin1 = new Enemy("Goblin Minion", 1, 0, 6)
 
+
+
+
+// const storyBegins = function () {
+//     showNarratorText("a")
+// }
 function storyBegins () {
     showNarratorText("a")
+    console.log(playerCharacter)
 }
 
+//runs the narration with choices
 function showNarratorText(textIndex){
+    playerCharacter = characterCreation.player[0]
     const textNode = story.find(textNode => textNode.id === textIndex)
     narrator.innerText = textNode.text
     while (optionBtn.firstChild){
         optionBtn.removeChild(optionBtn.firstChild)
     }
+    
     textNode.choices.forEach( option => {
         if (showChoice(option)) {
             const button = document.createElement("button")
@@ -280,54 +304,65 @@ function showChoice(option) {
     return true
 }
 
+//Decides the destination of each choice
 function selectChoices(option){
     let nextTextId = ""
     if(option.skillCheck === true) {
         nextTextId = option.destination[0]
     } else if (option.skillCheck === false) {
         nextTextId = option.destination[1]
-    }
+    } 
     if(nextTextId === 0){
         return storyBegins()
+    } else if (nextTextId === 1) {
+        window.location.reload()
     }
     showNarratorText(nextTextId)
+    console.log(playerCharacter)
 }
 
+//D20 R0LL
 function d20(min, max) {
     return Math.floor(Math.random() * (max - min) + min)
 }
 
-function dexterityCheck(dc) {
-    if(d20(0, 20) > dc) {
-        console.log(playerCharacter.chosenClass)
-        return true
-    } else {
-        return false
-    }
-}
 
-function persuasionCheck(dc) {
-    if(d20(0,20) > dc) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function intimidationCheck(dc) {
-    if(d20(0,20) > dc) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function insightCheck(dc) {
-    if(d20(0,20) > dc) {
-        return true
-    } else {
-        return false
-    }
+//SKILLS CHECK FUNCTIONS
+const skillCheck = {
+    dexterityCheck: function (dc){
+        if(playerCharacter.chosenClass.dexterity + d20(0, 20) > dc) {
+            console.log("dex")
+            return true
+        } else {
+            console.log(playerCharacter)
+            return false
+        } 
+    },
+    persuasionCheck: function (dc){
+        if(playerCharacter.chosenClass.persuasion  + d20(0, 20) > dc) {
+            console.log("persuasion")
+            return true
+        } else {
+            return false
+        } 
+    },
+    intimidationCheck: function (dc){
+        if(playerCharacter.chosenClass.intimidation  + d20(0, 20) > dc) {
+            console.log("intimidation")
+            return true
+        } else {
+            return false
+        } 
+    },
+    insightCheck: function (dc){
+        if(playerCharacter.chosenClass.insight  + d20(0, 20) > dc) {
+            console.log("insight")
+            return true
+        } else {
+            console.log(playerCharacter)
+            return false
+        } 
+    },
 }
 
 
@@ -351,7 +386,7 @@ const story = [
         choices: [
             {
                 choice: "[Dexterity] Save the person",
-                skillCheck: dexterityCheck(7),
+                skillCheck: skillCheck.dexterityCheck(7),
                 destination: ["c1", "c2"]
             },
             {
@@ -377,12 +412,12 @@ const story = [
         choices: [
             {
                 choice: "[Persuasion] Ask them nicely.",
-                skillCheck: persuasionCheck(10),
+                skillCheck:skillCheck.persuasionCheck(10),
                 destination: ["d1","d3"],
             },
             {
                 choice: "[Intimidation] Ask them not so nicely.",
-                skillCheck: intimidationCheck(8),
+                skillCheck: skillCheck.intimidationCheck(8),
                 destination: ["d2", "d3"],
             },
             {
@@ -398,7 +433,7 @@ const story = [
         choices: [
             {
                 choice: "[Dexterity] Attack",
-                skillCheck: dexterityCheck(goblin1.dexterity + d20(0,20)),
+                skillCheck: skillCheck.dexterityCheck(goblin1.dexterity + d20(0,20)),
                 destination: ["c3", "c4"]
             },
             {
@@ -458,7 +493,7 @@ const story = [
         choices: [
             {
                 choice: "[Insight] Observe the goblins",
-                skillCheck: insightCheck(10),
+                skillCheck: skillCheck.insightCheck(10),
                 destination:["e2", "e3"]
             }
         ]
@@ -469,7 +504,7 @@ const story = [
         choices:[
             {
                 choice: "[Insight] Observe the goblins",
-                skillCheck: insightCheck(10),
+                skillCheck: skillCheck.insightCheck(10),
                 destination:["e2", "e3"]
             }
         ]
@@ -480,12 +515,12 @@ const story = [
         choices: [ 
             {
                 choice: "[Persuasion] Ask them nicely about the goblins.",
-                skillCheck: persuasionCheck(10),
+                skillCheck: skillCheck.persuasionCheck(10),
                 destination: ["d1","d3"],
             },
             {
                 choice: "[Intimidation] Ask them not so nicely about the goblins.",
-                skillCheck: intimidationCheck(16),
+                skillCheck: skillCheck.intimidationCheck(16),
                 destination: ["d2", "d3"],
             },
             {
@@ -535,6 +570,7 @@ const story = [
             {
                 choice: "Return To Start Menu",
                 skillCheck: true,
+                destination: [1]
             }
         ]
     }

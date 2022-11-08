@@ -60,7 +60,7 @@ body {
     display: grid;
     width: 100vw;
     height: 100vh;
-    grid-template-columns: 1fr 0.75fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
     grid-template-rows: 0.5fr 1.5fr 0.3fr 0.2fr;
     grid-template-areas: 
     "name-container character-creation-picture-container ."
@@ -77,7 +77,7 @@ body {
     height: 100%;
     background-image: url(images/name-plaque.png);
     background-repeat: no-repeat;
-    background-size: 35vw 23vh;
+    background-size: 33vw 23vh;
     background-position: center;
     font-size: 5vh;
 }
@@ -140,7 +140,7 @@ label {
     grid-area: skills-tree-container;
     background-image: url(images/name-plaque.png);
     background-repeat: no-repeat;
-    background-size: 35vw 52vh;
+    background-size: 33vw 52vh;
     background-position: center;
     height: fit-content;
 
@@ -150,7 +150,7 @@ label {
     display: grid;
     /* border: 2px solid pink; */
     height: 100%;
-    grid-template-columns: 1fr 0.25fr;
+    grid-template-columns: 0.7fr 0.25fr;
     grid-template-rows: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
     grid-template-areas: 
     "skills class"
