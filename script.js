@@ -215,11 +215,6 @@ confirmBtn.addEventListener("click", (event) => {
 })
 
 
-
-
-
-
-
 //===================STORY BEGINS===================
 
 //STORY VARIABLES
@@ -414,7 +409,7 @@ const story = [
     },
     {
         id: "c3",
-        text: `This goblin is no match for a ${playerCharacter[0]}. The goblin is defeated and the person is safe though they are unimpressed with your sneaking skills.`,
+        text: `This goblin is no match for a you. The goblin is defeated and the person is safe though they are unimpressed with your sneaking skills.`,
         choices: [
             {
                 choice: "Talk to the person.",
@@ -518,7 +513,18 @@ const story = [
             {
                 choice: "Continue",
                 skillCheck: true,
-                destination: ["end"]
+                destination: ["end"],
+            }
+        ]
+    },
+    {
+        id: "e3",
+        text: "You know nothing about goblins. You tried your best and now you just want to go home. Wherever that is.",
+        choices: [
+            {
+                choice: "Go home",
+                skillCheck: true,
+                destination: ["end"],
             }
         ]
     },
