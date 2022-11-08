@@ -73,12 +73,12 @@ class Player {
 
 const dummyObject = {
     name: "",
-        insight: -200,
-        intimidation: -200,
-        persuasion: -200,
-        dexterity: -200,
-        attack: -200,
-        health: -200,
+        insight: 0,
+        intimidation: 0,
+        persuasion: 0,
+        dexterity: 0,
+        attack: 0,
+        health: 0,
 }
 
 
@@ -163,6 +163,7 @@ mageClass.addEventListener("click", () => {
 })
 
 let playerCharacter = new Player("",dummyObject)
+let story = []
 
 const characterCreation = { //object that contains functions for character creation
     player: [],
@@ -242,6 +243,7 @@ readyButton.addEventListener("click", () => {
     console.log(playerCharacter)
     readyStory()
     storyBegins()
+    return playerCharacter = characterCreation.player[0]
 })
 
 
@@ -368,7 +370,7 @@ const skillCheck = {
 
 //STORY 
 
-const story = [
+story = [
     {
         id: "a",
         text: "You wake up in the middle of a village that is being overrun with goblins.",

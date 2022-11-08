@@ -54,6 +54,10 @@ body {
     font-size: 5vh;
 }
 
+.warning {
+    font-size: medium;
+}
+
 /*======================CHARACTER CREATION======================*/
 
 #grid-character-creation {
