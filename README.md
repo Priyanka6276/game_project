@@ -7,13 +7,13 @@ I think the concept of D&D works well for a game. And as a fantasy fan it was ex
 ## **Layouts**
 Something I'm proud of is the layout of the game. I used CSS grid for the character creation menu. The template I created for this menu is below:
 
-![](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/chanb/Desktop/software_classwork/project-1-game/images/character-creation-template.png?version%3D1667883070490)
+![](images/character-creation-template.png)
 
 The skills list also used CSS grid to layout each skill/modifier. This was the way I thought worked best. If given more time, I would like to find a more efficent way to list each skill/modifier.
 
 I also made a template for the narrator's box. This used flex box. At first I thought to add more details on the screen but determined to make the layout simpler by using flex. 
 
-![](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/chanb/Desktop/software_classwork/project-1-game/images/narrator-tempalte.png?version%3D1667883318469)
+![](images/narrator-tempalte.png)
 
 I made some alterations in the CSS as I was working on the code, so the templates are not so accurate to the code. 
 
@@ -30,7 +30,7 @@ I created a character creation object (characterCreation) which held the operati
 ### Problems Faced
 However, a problem I faced was that after clicking the "Start Your Adventure" the stored player's data could not be accessed later. I think with more testing and time I can successfully get this feature to work. The game will still work, but you cannot add your character's modifiers to your "roll."
 
-![](https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/chanb/Desktop/software_classwork/project-1-game/images/Screenshot-showing-character-creation.jpg?version%3D1667884306924)
+![](images/Screenshot-showing-character-creation.jpg)
 
 ## **Story Begins**
 ### Behind The Scenes Stuff
